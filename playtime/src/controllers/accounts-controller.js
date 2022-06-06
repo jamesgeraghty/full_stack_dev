@@ -11,6 +11,14 @@ export const accountsController = {
             return h.view("signup-view", { title: "Sign up for Playlist" });
         },
     },
+    about: {
+        handler: async function (request, h) {
+            const user = request.payload;
+            await db.userStore.addUser(user);
+            return h.redirect("/");
+        },
+    },
+
     signup: {
         handler: async function (request, h) {
             const user = request.payload;
@@ -23,6 +31,13 @@ export const accountsController = {
             return h.view("login-view", { title: "Login to Playlist" });
         },
     },
+
+    showAbout: {
+        handler: function (request, h) {
+            return h.view("login-view", { title: "Login to Playlist" });
+        },
+    },
+
     login: {
         handler: async function (request, h) {
             const { email, password } = request.payload;
